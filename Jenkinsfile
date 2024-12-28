@@ -13,7 +13,7 @@ pipeline {
             }
             steps {
                 script {
-                    dir('/var/jenkins_home/workspace/shared-workspace') {
+                    dir('/var/jenkins_home/workspace/deploy') {
                         sh '''
                             mkdir -p ~/.aws
                             echo "[default]" > ~/.aws/credentials
@@ -36,7 +36,7 @@ pipeline {
             }
             steps {
                 script {
-                    dir('/var/jenkins_home/workspace/shared-workspace') {
+                    dir('/var/jenkins_home/workspace/deploy') {
                         sh '''
                             cd 04_ansible/
                             chmod 600 docker.pem
