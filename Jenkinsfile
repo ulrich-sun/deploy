@@ -5,7 +5,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key')
     }
     stages {
-        stage('Build k3s EC2') {
+        stage('Build docker EC2') {
             agent {
                 docker {
                     image 'jenkins/jnlp-agent-terraform'
@@ -21,7 +21,7 @@ pipeline {
                         chmod 400 ~/.aws/credentials
                         cd 02_terraform/
                         terraform init
-                        terraform apply -var="stack=kubernetes" -auto-approve
+                        terraform apply -var="stack=docker" -auto-approve
                     '''
                 }
             }
