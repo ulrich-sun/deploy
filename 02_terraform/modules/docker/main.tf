@@ -34,7 +34,9 @@ resource "aws_instance" "ds_vm" {
       "/tmp/docker.sh"
     ]
   }
-  provisioner "local-exec" {
-    command = "echo -e '\nansible_host: ${self.public_ip}' >> ../04_ansible/host_vars/docker.yaml"
+ provisioner "local-exec" {
+    command = <<EOT
+      echo -e "[k3s]\n${self.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=../docker.pem" > ../04_ansible/inventory
+    EOT
   }
 }
